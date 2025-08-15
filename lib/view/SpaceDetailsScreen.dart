@@ -90,7 +90,8 @@ class SpaceDetailScreen extends StatelessWidget {
                   const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   child: Row(
                     children: [
-                      InkWell(
+                      Expanded(
+                        child: InkWell(
                           onTap: () {
                             Navigator.push(
                               context,
@@ -99,9 +100,13 @@ class SpaceDetailScreen extends StatelessWidget {
                             );
                           },
                           child: _infoCard(
-                              Icons.location_on, location, "Location")),
+                              Icons.location_on, location, "Location"),
+                        ),
+                      ),
                       const SizedBox(width: 16),
-                      _infoCard(Icons.star, rating, "Ratings"),
+                      Expanded(
+                        child: _infoCard(Icons.star, rating, "Ratings"),
+                      ),
                     ],
                   ),
                 ),
@@ -177,7 +182,8 @@ class SpaceDetailScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(context, "/booking");
                 },
-                child: const Text("Book Now", style: TextStyle(fontSize: 16,color: Colors.white)),
+                child: const Text("Book Now",
+                    style: TextStyle(fontSize: 16, color: Colors.white)),
               ),
             ),
           ),
@@ -187,26 +193,24 @@ class SpaceDetailScreen extends StatelessWidget {
   }
 
   Widget _infoCard(IconData icon, String value, String label) {
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 4)],
-        ),
-        child: Column(
-          children: [
-            Icon(icon, color: Colors.teal),
-            const SizedBox(height: 4),
-            Text(value,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center),
-            Text(label,
-                style: const TextStyle(color: Colors.grey, fontSize: 12),
-                textAlign: TextAlign.center),
-          ],
-        ),
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 4)],
+      ),
+      child: Column(
+        children: [
+          Icon(icon, color: Colors.teal),
+          const SizedBox(height: 4),
+          Text(value,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center),
+          Text(label,
+              style: const TextStyle(color: Colors.grey, fontSize: 12),
+              textAlign: TextAlign.center),
+        ],
       ),
     );
   }
